@@ -12,11 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			data.forEach((user) => {
 				const row = document.createElement('tr');
 
+				row.classList.add(...[
+					'cursor-pointer',
+					'border-t',
+					'hover:bg-gray-50',
+					'hover:transition',
+					'hover:duration-100'
+				]);
+
 				row.id = `user-${user.id}`;
 				row.innerHTML = `
-					<td>${user.id}</td>
-					<td>${user.name}</td>
-					<td>${user.username}</td>
+					<td class="p-2">${user.id}</td>
+					<td class="p-2">${user.name}</td>
+					<td class="p-2">${user.username}</td>
 				`;
 
 				row.addEventListener('click', () => {
@@ -36,8 +44,9 @@ const searchByName = () => {
 
 	tableBody.querySelectorAll('tr').forEach((row) => {
 		const name = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+		const username = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
 
-		if (name.includes(searchValue)) {
+		if (name.includes(searchValue) || username.includes(searchValue)) {
 			row.style.display = '';
 		} else {
 			row.style.display = 'none';

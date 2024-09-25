@@ -1,0 +1,22 @@
+{
+	"name": "we-task",
+	"version": "1.0.0",
+	"description": "test task for WE",
+	"main": "index.js",
+	"scripts": {
+		"build:css": "postcss assets/css/tailwind-input.css -o assets/css/tailwind.css",
+		"watch:css": "postcss assets/css/tailwind-input.css -o assets/css/tailwind.css --watch",
+		"serve": "live-server",
+		"start": "concurrently \"npm run watch:css\" \"live-server\""
+	},
+	"author": "Vidrik Toom Tabas",
+	"license": "ISC",
+	"dependencies": {
+		"autoprefixer": "^10.4.20",
+		"tailwindcss": "^3.4.13"
+	},
+	"devDependencies": {
+		"concurrently": "^9.0.1",
+		"postcss-cli": "^11.0.0"
+	}
+}

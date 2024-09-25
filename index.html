@@ -4,27 +4,31 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>WE Users</title>
-	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="./assets/css/tailwind.css">
+	<link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
-<header>
-	<h1>Users</h1>
+<header class="container max-w-3xl mx-auto mt-20 pl-16 text-white">
+	<h1 class="text-2xl font-bold">Users</h1>
 </header>
-<main>
-	<input type="text" id="search" placeholder="Search by name" onkeyup="searchByName()"/>
-	<div id="users">
-		<table id="users-table">
-			<thead>
+<main
+	class="container max-w-3xl mx-auto mt-4 p-10 bg-white rounded-xl shadow-lg shadow-slate-700 animate-[fadeIn_300ms_ease-in-out]">
+	<input id="search" class="w-64 mb-4 py-2 px-3 border rounded" type="text" placeholder="Search by name or username"
+		   onkeyup="searchByName()"/>
+	<div id="users" class="relative overflow-x-auto">
+		<table id="users-table" class="table-fixed w-full text-sm text-left">
+			<thead class="text-sm">
 			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Username</th>
+				<th scope="col" class="p-1 pl-2 w-2">ID</th>
+				<th scope="col" class="p-1 pl-2 w-8">Name</th>
+				<th scope="col" class="p-1 pl-2 w-8">Username</th>
 			</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
 </main>
-<script src="js/index.js"></script>
+<script src="./js/script.js"></script>
+<script src="./js/index.js"></script>
 </body>
 </html>
