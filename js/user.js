@@ -1,13 +1,14 @@
 const fetchUserData = (userId) => {
 	fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-		.then(response => {
+		.then((response) => {
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
 			return response.json();
 		})
-		.then(data => {
-			const userDetails = document.getElementById('user-details').children;
+		.then((data) => {
+			const userDetails =
+				document.getElementById('user-details').children;
 
 			const userInfo = userDetails[0].children;
 			userInfo[0].innerText = data.name;
@@ -34,8 +35,11 @@ const fetchUserData = (userId) => {
 
 			document.title += ` - ${data.name}`;
 		})
-		.catch(error => {
-			console.error(`Error when fetching user with id ${userId}: `, error);
+		.catch((error) => {
+			console.error(
+				`Error when fetching user with id ${userId}: `,
+				error
+			);
 		});
 };
 

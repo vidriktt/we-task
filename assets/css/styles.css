@@ -4,11 +4,18 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: #111317;
 	background-color: #111317;
-	background-image: repeating-linear-gradient(90deg, #2b303a, #2b303a 1px, transparent 0, transparent);
+	background-image: repeating-linear-gradient(
+		90deg,
+		#2b303a,
+		#2b303a 1px,
+		transparent 0,
+		transparent
+	);
 	background-size: calc(var(--vw, 1vw) * 8.33333) 100%;
 }
 
-a, button {
+a,
+button {
 	transition: all 150ms ease;
 }
 
