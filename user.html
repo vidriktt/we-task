@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="./assets/images/user-icon.png" />
 		<title>WE User</title>
 		<link rel="stylesheet" href="./assets/css/tailwind.css" />
 		<link rel="stylesheet" href="./assets/css/styles.css" />
@@ -10,70 +11,140 @@
 	<body>
 		<header class="container max-w-3xl mx-auto mt-20 pl-16 text-white">
 			<h1 class="text-2xl font-bold">User details</h1>
-			<a class="text-sm hover:text-[#e1261c]" href="index.html">← Back</a>
+			<a class="text-sm hover:text-[#e1261c]" href="./index.html">
+				← Back
+			</a>
 		</header>
 		<main
 			class="container max-w-3xl mx-auto mt-4 p-10 bg-white rounded-xl shadow-lg shadow-slate-700 animate-[fadeIn_300ms_ease-in-out]"
 		>
 			<div id="user-details" class="space-y-6">
-				<div class="p-6 bg-slate-50 rounded-lg shadow-md">
-					<h2 class="text-2xl font-semibold mb-2">User</h2>
-					<p class="text-slate-600">
-						<strong>Username:</strong> <span></span>
+				<div
+					class="flex flex-col gap-2 p-6 bg-gray-50 rounded-lg shadow-md"
+				>
+					<div>
+						<h2 class="mb-1 text-2xl font-semibold"></h2>
+						<p class="flex gap-1 text-slate-600">
+							<strong>User:</strong>
+							<label>
+								<input type="text" class="w-80 rounded px-2" />
+							</label>
+						</p>
+					</div>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Username:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
+					<p class="flex gap-1 text-slate-600">
 						<strong>Email:</strong>
-						<a class="text-[#e1261c] hover:brightness-50"></a>
+						<label>
+							<input type="email" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
+					<p class="flex gap-1 text-slate-600">
 						<strong>Phone:</strong>
-						<a class="text-[#e1261c] hover:brightness-50"></a>
+						<label>
+							<input type="tel" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
+					<p class="flex gap-1 text-slate-600">
 						<strong>Website:</strong>
-						<a
-							href="#"
-							target="_blank"
-							class="text-[#e1261c] hover:brightness-50"
-						></a>
+						<label>
+							<input type="url" class="w-80 rounded px-2" />
+						</label>
 					</p>
 				</div>
 
-				<div class="p-6 bg-slate-50 rounded-lg shadow-md">
+				<div
+					class="flex flex-col gap-2 p-6 bg-gray-50 rounded-lg shadow-md"
+				>
 					<h2 class="text-xl font-bold mb-2">Address</h2>
-					<p class="text-slate-600">
-						<strong>Street:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Street:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2"
+						/></label>
 					</p>
-					<p class="text-slate-600">
-						<strong>Suite:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Suite:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
-						<strong>City:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>City:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
-						<strong>Zipcode:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Zipcode:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
+					<p class="flex gap-1 text-slate-600">
 						<strong>Coordinates:</strong>
-						<a
-							target="_blank"
-							class="text-[#e1261c] hover:brightness-50"
-						></a>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
 				</div>
 
-				<div class="p-6 bg-slate-50 rounded-lg shadow-md">
+				<div
+					class="flex flex-col gap-2 p-6 bg-gray-50 rounded-lg shadow-md"
+				>
 					<h2 class="text-xl font-bold mb-2">Company</h2>
-					<p class="text-slate-600">
-						<strong>Name:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Name:</strong>
+						<label>
+							<input type="text" class="w-80 rounded px-2" />
+						</label>
 					</p>
-					<p class="text-slate-600">
-						<strong>Catchphrase:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong>Catchphrase:</strong>
+						<label class="h-7">
+							<textarea class="w-80 h-7 rounded px-2"></textarea>
+						</label>
 					</p>
-					<p class="text-slate-600">
-						<strong>Business summary:</strong> <span></span>
+					<p class="flex gap-1 text-slate-600">
+						<strong class="text-nowrap">Business summary:</strong>
+						<label class="h-7">
+							<textarea class="w-80 h-7 rounded px-2"></textarea>
+						</label>
 					</p>
 				</div>
+			</div>
+			<p id="validation-err-msg" class="hidden mt-4 text-red-500">
+				Please fill all of the fields.
+			</p>
+			<div class="flex gap-3">
+				<button
+					id="user-edit-btn"
+					class="hidden mt-4 px-2 py-1 bg-[#e1261c] text-white rounded hover:scale-105"
+				>
+					Edit
+				</button>
+				<button
+					id="user-save-btn"
+					class="mt-4 px-2 py-1 bg-[#e1261c] text-white rounded hover:scale-105"
+				>
+					Save
+				</button>
+				<button
+					id="user-cancel-btn"
+					class="mt-4 px-2 py-1 border rounded hover:scale-105"
+				>
+					Cancel
+				</button>
+				<button
+					id="user-delete-btn"
+					class="mt-4 ml-auto px-2 py-1 bg-[#e1261c] text-white rounded hover:scale-105"
+				>
+					Delete
+				</button>
 			</div>
 		</main>
 		<script src="./js/script.js"></script>

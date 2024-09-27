@@ -19,6 +19,30 @@ button {
 	transition: all 150ms ease;
 }
 
+input,
+textarea {
+	border: 1px solid #e5e7eb;
+	-webkit-transition: 150ms;
+	transition: 150ms;
+	outline: none;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #e1261c;
+	box-shadow: 0 0 4px #e1261c;
+}
+
+input:disabled,
+textarea:disabled {
+	border: transparent;
+	background: transparent;
+}
+
+textarea:disabled {
+	resize: none;
+}
+
 ::-moz-selection {
 	color: #e1261c;
 	background: #111317;

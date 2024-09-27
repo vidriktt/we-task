@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="./assets/images/user-icon.png" />
 		<title>WE Users</title>
 		<link rel="stylesheet" href="./assets/css/tailwind.css" />
 		<link rel="stylesheet" href="./assets/css/styles.css" />
@@ -14,27 +15,41 @@
 		<main
 			class="container max-w-3xl mx-auto mt-4 p-10 bg-white rounded-xl shadow-lg shadow-slate-700 animate-[fadeIn_300ms_ease-in-out]"
 		>
-			<input
-				id="search"
-				class="w-64 mb-4 py-2 px-3 border rounded"
-				type="text"
-				placeholder="Search by name or username"
-			/>
-			<div id="users" class="relative overflow-x-auto">
-				<table
-					id="users-table"
-					class="table-fixed w-full text-sm text-left"
+			<div class="flex justify-between items-center mb-4">
+				<label class="sr-only" for="search">
+					Search by name or username
+				</label>
+				<input
+					id="search"
+					class="w-64 py-2 px-3 rounded"
+					type="text"
+					placeholder="Search by name or username"
+				/>
+				<a
+					id="add-user-btn"
+					class="h-fit px-2 py-0.5 text-white bg-[#e1261c] rounded-md hover:scale-105"
+					href="./user.html"
 				>
-					<thead class="text-sm">
-						<tr>
-							<th scope="col" class="p-1 pl-2 w-2">ID</th>
-							<th scope="col" class="p-1 pl-2 w-8">Name</th>
-							<th scope="col" class="p-1 pl-2 w-8">Username</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
+					＋ Add new user
+				</a>
 			</div>
+			<table
+				id="users-table"
+				class="table-fixed w-full text-sm text-left"
+			>
+				<thead class="text-sm">
+					<tr>
+						<th scope="col" class="p-1 pl-2 w-2">ID</th>
+						<th scope="col" class="p-1 pl-2 w-8">Name</th>
+						<th scope="col" class="p-1 pl-2 w-8">Username</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div
+				id="loader"
+				class="animate-spin rounded-full h-8 w-8 mt-4 mx-auto border-t-4 border-solid border-[#e1261c]"
+			></div>
 		</main>
 		<script src="./js/script.js"></script>
 		<script src="./js/index.js"></script>
