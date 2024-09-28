@@ -2,7 +2,10 @@ const storedUsers = JSON.parse(sessionStorage.getItem('we-users'));
 
 const fetchUserData = (userId, callback) => {
 	if (storedUsers) {
-		callback(null, storedUsers[userId - 1]);
+		callback(
+			null,
+			storedUsers.find((user) => user.id === Number.parseInt(userId))
+		);
 	} else {
 		fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
 			.then((response) => {
@@ -30,7 +33,7 @@ const populateUserData = (userData) => {
 	const userInfo = userDetails[0].children;
 	userInfo[0].children[0].innerHTML = userData.name;
 	userInfo[0].children[1].style.display = 'none';
-	userInfo[0].children[1].children[0].value = userData.name;
+	userInfo[0].children[1].children[1].children[0].value = userData.name;
 	userInfo[1].children[1].children[0].value = userData.username;
 	userInfo[2].children[1].children[0].value = userData.email;
 	userInfo[3].children[1].children[0].value = userData.phone;
@@ -59,7 +62,8 @@ const saveUserData = (userId) => {
 			? Number.parseInt(userId)
 			: storedUsers[storedUsers.length - 1].id + 1 ||
 				Math.floor(Math.random() * 99),
-		name: userDetails[0].children[0].children[1].children[0].value,
+		name: userDetails[0].children[0].children[1].children[1].children[0]
+			.value,
 		username: userDetails[0].children[1].children[1].children[0].value,
 		email: userDetails[0].children[2].children[1].children[0].value,
 		phone: userDetails[0].children[3].children[1].children[0].value,
@@ -85,6 +89,8 @@ const saveUserData = (userId) => {
 			bs: userDetails[2].children[3].children[1].children[0].value,
 		},
 	};
+
+	userDetailsName.children[0].innerHTML = updatedData.name;
 
 	if (userId) {
 		const updatedUsers = storedUsers.map((user) =>
@@ -125,6 +131,13 @@ const toggleInputs = (disabled) => {
 	);
 };
 
+const toggleEditing = (editing) => {
+	toggleButtons(editing);
+	toggleInputs(!editing);
+	userDetailsName.children[0].style.display = editing ? 'none' : 'block';
+	userDetailsName.children[1].style.display = editing ? 'block' : 'none';
+};
+
 const areInputsValid = () => {
 	let inputsValid = true;
 	const inputs = document.querySelectorAll(
@@ -147,6 +160,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('id');
 let user = {};
 
+const userDetailsName = document.getElementById('user-details-name');
 const editBtn = document.getElementById('user-edit-btn');
 const saveBtn = document.getElementById('user-save-btn');
 const cancelBtn = document.getElementById('user-cancel-btn');
@@ -168,8 +182,7 @@ if (userId) {
 }
 
 editBtn.addEventListener('click', () => {
-	toggleButtons(true);
-	toggleInputs();
+	toggleEditing(true);
 });
 
 saveBtn.addEventListener('click', () => {
@@ -179,8 +192,7 @@ saveBtn.addEventListener('click', () => {
 	}
 
 	saveUserData(userId && userId);
-	toggleButtons();
-	toggleInputs(true);
+	toggleEditing();
 });
 
 cancelBtn.addEventListener('click', () => {
@@ -190,7 +202,7 @@ cancelBtn.addEventListener('click', () => {
 
 	errMsg.style.display = 'none';
 	userId && populateUserData(user);
-	toggleButtons();
+	toggleEditing();
 });
 
 deleteBtn.addEventListener('click', () => {
