@@ -44,7 +44,8 @@ const populateUserData = (userData) => {
 	addressInfo[2].children[1].children[0].value = userData.address.suite;
 	addressInfo[3].children[1].children[0].value = userData.address.city;
 	addressInfo[4].children[1].children[0].value = userData.address.zipcode;
-	addressInfo[5].children[1].children[0].value = `${userData.address.geo.lat}, ${userData.address.geo.lng}`;
+	addressInfo[5].children[1].children[0].value = userData.address.geo.lat;
+	addressInfo[5].children[2].children[0].value = userData.address.geo.lng;
 
 	const companyInfo = userDetails[2].children;
 	companyInfo[1].children[1].children[0].value = userData.company.name;
@@ -52,6 +53,7 @@ const populateUserData = (userData) => {
 	companyInfo[3].children[1].children[0].value = userData.company.bs;
 
 	toggleInputs(true);
+	toggleGeoInputs(true);
 
 	document.title += ` - ${userData.name}`;
 };
@@ -74,12 +76,8 @@ const saveUserData = (userId) => {
 			city: userDetails[1].children[3].children[1].children[0].value,
 			zipcode: userDetails[1].children[4].children[1].children[0].value,
 			geo: {
-				lat: userDetails[1].children[5].children[1].children[0].value
-					.split(',')[0]
-					.trim(),
-				lng: userDetails[1].children[5].children[1].children[0].value
-					.split(',')[1]
-					.trim(),
+				lat: userDetails[1].children[5].children[1].children[0].value,
+				lng: userDetails[1].children[5].children[2].children[0].value,
 			},
 		},
 		company: {
@@ -131,11 +129,35 @@ const toggleInputs = (disabled) => {
 	);
 };
 
+const toggleGeoInputs = (disabled) => {
+	const latInput = userDetailsCoords.children[1].children[0];
+	const lngInput = userDetailsCoords.children[2].children[0];
+
+	const classesToToggle = {
+		lat: ['w-40', 'mr-2', 'pr-2'],
+		lng: ['w-40', 'ml-2'],
+	};
+
+	if (disabled) {
+		latInput.classList.remove(...classesToToggle.lat);
+		lngInput.classList.remove(...classesToToggle.lng);
+
+		latInput.setAttribute('size', user?.address?.geo?.lat?.length || 10);
+		lngInput.setAttribute('size', user?.address?.geo?.lng?.length || 10);
+	} else {
+		latInput.classList.add(...classesToToggle.lat);
+		lngInput.classList.add(...classesToToggle.lng);
+	}
+};
+
 const toggleEditing = (editing) => {
 	toggleButtons(editing);
 	toggleInputs(!editing);
+	toggleGeoInputs(!editing);
+
 	userDetailsName.children[0].style.display = editing ? 'none' : 'block';
 	userDetailsName.children[1].style.display = editing ? 'block' : 'none';
+	errMsg.style.display = 'none';
 };
 
 const areInputsValid = () => {
@@ -161,6 +183,7 @@ const userId = urlParams.get('id');
 let user = {};
 
 const userDetailsName = document.getElementById('user-details-name');
+const userDetailsCoords = document.getElementById('user-details-coords');
 const editBtn = document.getElementById('user-edit-btn');
 const saveBtn = document.getElementById('user-save-btn');
 const cancelBtn = document.getElementById('user-cancel-btn');
@@ -200,7 +223,6 @@ cancelBtn.addEventListener('click', () => {
 		window.location.href = 'index.html';
 	}
 
-	errMsg.style.display = 'none';
 	userId && populateUserData(user);
 	toggleEditing();
 });

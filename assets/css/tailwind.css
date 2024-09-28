@@ -559,11 +559,17 @@ video {
 .ml-auto {
   margin-left: auto;
 }
+.mr-2 {
+  margin-right: 0.5rem;
+}
 .mt-20 {
   margin-top: 5rem;
 }
 .mt-4 {
   margin-top: 1rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
 }
 .block {
   display: block;
@@ -589,6 +595,9 @@ video {
 }
 .w-2 {
   width: 0.5rem;
+}
+.w-40 {
+  width: 10rem;
 }
 .w-64 {
   width: 16rem;
@@ -736,6 +745,9 @@ video {
 }
 .pl-2 {
   padding-left: 0.5rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
 }
 .text-left {
   text-align: left;
